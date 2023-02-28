@@ -1,0 +1,12 @@
+[package]
+name = "my-nosql-contracts"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+my-no-sql-server-abstractions = { tag = "0.1.1", git = "https://github.com/MyJetTools/my-no-sql-server-abstractions.git" }
+my-no-sql-macros = { tag = "0.1.0", git = "https://github.com/MyJetTools/my-no-sql-macros.git" }
+rust-extensions = { tag = "0.1.2", git = "https://github.com/MyJetTools/rust-extensions.git" }
+serde = { version = "*", features = ["derive"] }
