@@ -13,8 +13,4 @@ impl BidAskSnapshotNoSqlEntity {
     pub fn generate_partition_key() -> &'static str {
         "instruments_snapshot"
     }
-
-    pub fn generate_rk(instrument_id: &str) -> &'static str {
-        instrument_id
-    }
 }
