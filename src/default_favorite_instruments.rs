@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-#[my_no_sql_macros::my_no_sql_entity("default")]
+#[my_no_sql_macros::my_no_sql_entity("defaultvalues")]
 #[derive(Serialize, Deserialize, Debug, Clone)]
 #[serde(rename_all = "PascalCase")]
 pub struct DefaultFavoriteInstruments {
