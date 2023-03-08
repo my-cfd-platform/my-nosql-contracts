@@ -19,6 +19,7 @@ pub struct TradingInstrumentNoSqlEntity {
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
+#[serde(rename_all = "PascalCase")]
 pub struct TradingInstrumentDayOff {
     pub dow_from: i32,
     pub time_from: String,
