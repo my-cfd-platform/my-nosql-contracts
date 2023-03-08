@@ -15,7 +15,7 @@ pub struct TradingInstrumentNoSqlEntity {
     pub day_timeout: Option<i32>,
     pub night_timeout: Option<i32>,
     pub trading_disabled: bool,
-    pub day_off: Vec<TradingInstrumentDayOff>,
+    pub days_off: Vec<TradingInstrumentDayOff>,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
