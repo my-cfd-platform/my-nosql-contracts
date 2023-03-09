@@ -12,6 +12,7 @@ pub struct TradingProfileNoSqlEntity {
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
+#[serde(rename_all = "PascalCase")]
 pub struct TradingProfileInstrument {
     pub id: String,
     pub min_operation_volume: f64,
