@@ -9,7 +9,7 @@ pub struct TradingInstrumentNoSqlEntity {
     pub base: String,
     pub quote: String,
     pub tick_size: f64,
-    pub swap_schedule_id: String,
+    pub swap_schedule_id: Option<String>,
     pub group_id: Option<String>,
     pub weight: Option<i32>,
     pub day_timeout: Option<i32>,
