@@ -4,8 +4,8 @@ use serde::*;
 #[derive(Serialize, Deserialize, Debug, Clone)]
 #[serde(rename_all = "PascalCase")]
 pub struct DefaultsNoSqlEntity {
-    pub value: String,
-    pub values: Vec<String>,
+    pub value: Option<String>,
+    pub values: Option<Vec<String>>,
 }
 
 impl DefaultsNoSqlEntity {
