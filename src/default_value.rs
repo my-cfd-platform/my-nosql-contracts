@@ -17,6 +17,14 @@ impl DefaultsNoSqlEntity {
         "defaulttg"
     }
 
+    pub fn row_key_as_fav_instrument_web() -> &'static str {
+        "favouriteinstrumentsweb"
+    }
+
+    pub fn row_key_as_fav_instrument_mobile() -> &'static str {
+        "favouriteinstrumentsmobile"
+    }
+
     pub fn get_asset_id(&self) -> &str {
         &self.row_key
     }
