@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 use serde::{Deserialize, Serialize};
 
 #[my_no_sql_macros::my_no_sql_entity("fav-instruments-cache")]
@@ -8,15 +10,15 @@ pub struct FavInstrumentsCacheMyNoSqlEntity {
 }
 
 impl FavInstrumentsCacheMyNoSqlEntity {
-    pub fn generate_partition_key(trader_id: &str) -> &'static str {
+    pub fn generate_partition_key(trader_id: &str) -> &str {
         trader_id
     }
 
-    pub fn generate_row_key_as_web(trader_id: &str) -> &'static str {
+    pub fn generate_row_key_as_web() -> &'static str {
         "w"
     }
 
-    pub fn generate_row_key_as_mobile(trader_id: &str) -> &'static str {
+    pub fn generate_row_key_as_mobile() -> &'static str {
         "m"
     }
 }
