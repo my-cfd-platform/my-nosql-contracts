@@ -1,6 +1,8 @@
 use serde::{Deserialize, Serialize};
 
+// cSpell:disable
 #[my_no_sql_macros::my_no_sql_entity("live-tradinggroups")]
+// cSpell:enable
 #[derive(Serialize, Deserialize, Debug, Clone)]
 #[serde(rename_all = "PascalCase")]
 pub struct TradingGroupNoSqlEntity {
