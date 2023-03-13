@@ -33,6 +33,18 @@ impl DefaultsNoSqlEntity {
         // cSpell:enable
     }
 
+    pub fn row_key_as_default_instrument_png_avatar() -> &'static str {
+        // cSpell:disable
+        "TradingInstrumentAvatarPng"
+        // cSpell:enable
+    }
+
+    pub fn row_key_as_default_instrument_svg_avatar() -> &'static str {
+        // cSpell:disable
+        "TradingInstrumentAvatarSvg"
+        // cSpell:enable
+    }
+
     pub fn get_asset_id(&self) -> &str {
         &self.row_key
     }
