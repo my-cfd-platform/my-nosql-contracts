@@ -9,7 +9,7 @@ pub struct TradingInstrumentGroupNoSqlEntity {
     pub weight: i32,
 }
 
-impl TradingInstrumentNoSqlEntity {
+impl TradingInstrumentGroupNoSqlEntity {
     pub fn generate_partition_key() -> &'static str {
         "ig"
     }
