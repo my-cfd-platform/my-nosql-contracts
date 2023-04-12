@@ -8,6 +8,7 @@ pub struct TradingProfileNoSqlEntity {
     pub margin_call_percent: f64,
     pub stop_out_percent: f64,
     pub position_topping_up_percent: f64,
+    pub is_a_book: bool,
     pub instruments: Vec<TradingProfileInstrument>,
 }
 
