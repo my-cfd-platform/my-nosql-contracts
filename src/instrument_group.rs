@@ -7,6 +7,7 @@ pub struct TradingInstrumentGroupNoSqlEntity {
     pub id: String,
     pub name: String,
     pub weight: i32,
+    pub hidden: bool
 }
 
 impl TradingInstrumentGroupNoSqlEntity {
