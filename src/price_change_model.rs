@@ -10,7 +10,7 @@ const MINUTE_PK: &str = "Minute";
 pub struct PriceChangeSnapshotNoSqlEntity {
     pub previous_price: f64,
     pub current_price: f64,
-    pub change_percent: f64,
+    pub change_percent: Option<f64>,
     pub name: String,
     pub period: String
 }
