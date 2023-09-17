@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
-
-#[my_no_sql_macros::my_no_sql_entity("instruments")]
+pub use service_sdk::my_no_sql_sdk;
+#[my_no_sql_sdk::macros::my_no_sql_entity("instruments")]
 #[derive(Serialize, Deserialize, Debug, Clone)]
 #[serde(rename_all = "PascalCase")]
 pub struct TradingInstrumentNoSqlEntity {

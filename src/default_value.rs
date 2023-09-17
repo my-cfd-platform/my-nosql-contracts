@@ -1,7 +1,7 @@
 use serde::*;
-
+pub use service_sdk::my_no_sql_sdk;
 // cSpell:disable
-#[my_no_sql_macros::my_no_sql_entity("defaultvalues")]
+#[my_no_sql_sdk::macros::my_no_sql_entity("defaultvalues")]
 // cSpell:enable
 #[derive(Serialize, Deserialize, Debug, Clone)]
 #[serde(rename_all = "PascalCase")]

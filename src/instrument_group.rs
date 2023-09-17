@@ -1,13 +1,13 @@
 use serde::{Deserialize, Serialize};
-
-#[my_no_sql_macros::my_no_sql_entity("instrumentsgroups")]
+pub use service_sdk::my_no_sql_sdk;
+#[my_no_sql_sdk::macros::my_no_sql_entity("instrumentsgroups")]
 #[derive(Serialize, Deserialize, Debug, Clone)]
 #[serde(rename_all = "PascalCase")]
 pub struct TradingInstrumentGroupNoSqlEntity {
     pub id: String,
     pub name: String,
     pub weight: i32,
-    pub hidden: bool
+    pub hidden: bool,
 }
 
 impl TradingInstrumentGroupNoSqlEntity {
