@@ -1,8 +1,8 @@
 use std::collections::HashMap;
 
 use serde::{Deserialize, Serialize};
-pub use service_sdk::my_no_sql_sdk;
-#[my_no_sql_sdk::macros::my_no_sql_entity("fav-instruments-cache")]
+service_sdk::macros::use_my_no_sql_entity!();
+#[my_no_sql_entity("fav-instruments-cache")]
 #[derive(Serialize, Deserialize, Debug, Clone)]
 #[serde(rename_all = "PascalCase")]
 pub struct FavInstrumentsCacheMyNoSqlEntity {

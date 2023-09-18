@@ -3,8 +3,8 @@ use serde::*;
 const DAILY_PK: &str = "Daily";
 const HOURLY_PK: &str = "Hourly";
 const MINUTE_PK: &str = "Minute";
-pub use service_sdk::my_no_sql_sdk;
-#[my_no_sql_sdk::macros::my_no_sql_entity("price-change-snapshots")]
+service_sdk::macros::use_my_no_sql_entity!();
+#[my_no_sql_entity("price-change-snapshots")]
 #[derive(Serialize, Deserialize, Debug, Clone)]
 #[serde(rename_all = "PascalCase")]
 pub struct PriceChangeSnapshotNoSqlEntity {

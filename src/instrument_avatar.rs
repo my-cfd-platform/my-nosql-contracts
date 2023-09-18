@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
-pub use service_sdk::my_no_sql_sdk;
-#[my_no_sql_sdk::macros::my_no_sql_entity("instrumentsavatar")]
+service_sdk::macros::use_my_no_sql_entity!();
+#[my_no_sql_entity("instrumentsavatar")]
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct InstrumentAvatarMyNoSqlEntity {
     #[serde(rename = "Avatar")]
