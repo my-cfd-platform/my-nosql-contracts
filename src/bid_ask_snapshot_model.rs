@@ -9,6 +9,8 @@ pub struct BidAskSnapshotNoSqlEntity {
     pub unix_timestamp_with_milis: u64,
     pub bid: f64,
     pub ask: f64,
+    pub base: String,
+    pub quote: String,
 }
 
 impl BidAskSnapshotNoSqlEntity {
