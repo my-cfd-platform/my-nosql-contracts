@@ -8,6 +8,7 @@ edition = "2021"
 [dependencies]
 service-sdk = { tag = "0.2.3", git = "https://github.com/MyJetTools/service-sdk.git", features = [
     "macros",
+    "my-nosql-sdk",
 ] }
 
 serde = { version = "*", features = ["derive"] }
