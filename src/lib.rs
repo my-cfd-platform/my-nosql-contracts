@@ -11,6 +11,7 @@ mod trading_group;
 mod trading_instrument;
 mod trading_profile;
 mod swap_profile_model;
+mod swap_schedule_model;
 
 pub use bid_ask_snapshot_model::*;
 pub use default_favorite_instruments::*;
@@ -25,3 +26,4 @@ pub use trading_group::*;
 pub use trading_instrument::*;
 pub use trading_profile::*;
 pub use swap_profile_model::*;
+pub use swap_schedule_model::*;

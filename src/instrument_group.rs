@@ -1,4 +1,4 @@
-use serde::{Deserialize, Serialize};
+use serde::{Serialize, Deserialize};
 service_sdk::macros::use_my_no_sql_entity!();
 #[my_no_sql_entity("instrumentsgroups")]
 #[derive(Serialize, Deserialize, Debug, Clone)]
@@ -8,14 +8,4 @@ pub struct TradingInstrumentGroupNoSqlEntity {
     pub name: String,
     pub weight: i32,
     pub hidden: bool,
-}
-
-impl TradingInstrumentGroupNoSqlEntity {
-    pub fn generate_partition_key(profile_id: &str) -> &'static str {
-        profile_id
-    }
-
-    pub fn generate_rk(instrument_id: &str) -> &'static str {
-        instrument_id
-    }
 }
