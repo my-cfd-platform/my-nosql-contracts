@@ -11,7 +11,11 @@ pub struct TradingInstrumentGroupNoSqlEntity {
 }
 
 impl TradingInstrumentGroupNoSqlEntity {
-    pub fn generate_partition_key() -> &'static str {
-        "ig"
+    pub fn generate_partition_key(profile_id: &str) -> &'static str {
+        profile_id
+    }
+
+    pub fn generate_rk(instrument_id: &str) -> &'static str {
+        instrument_id
     }
 }
