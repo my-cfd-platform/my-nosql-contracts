@@ -1,11 +1,12 @@
 use serde::{Serialize, Deserialize};
 service_sdk::macros::use_my_no_sql_entity!();
-#[my_no_sql_entity("instrumentsgroups")]
+
+#[my_no_sql_entity("swap-schedule")]
 #[derive(Serialize, Deserialize, Debug, Clone)]
 #[serde(rename_all = "PascalCase")]
-pub struct TradingInstrumentGroupNoSqlEntity {
+pub struct SwapScheduleNoSqlModel {
     pub id: String,
-    pub name: String,
-    pub weight: i32,
-    pub hidden: bool,
+    pub date_of_week: i32,
+    pub time: String,
+    pub amount: i32,
 }
