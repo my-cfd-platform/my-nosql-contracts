@@ -6,6 +6,7 @@ service_sdk::macros::use_my_no_sql_entity!();
 #[serde(rename_all = "PascalCase")]
 pub struct SwapScheduleNoSqlModel {
     pub id: String,
+    pub swap_profile_id: String,
     pub date_of_week: i32,
     pub time: String,
     pub amount: i32,
