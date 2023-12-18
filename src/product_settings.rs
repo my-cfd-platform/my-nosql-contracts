@@ -12,4 +12,5 @@ pub enum ProductSettings {
 pub struct SendGridSettingsModel {
     pub send_grid_api_key: String,
     pub seq_conn_string: String,
+    pub from_email: String,
 }
