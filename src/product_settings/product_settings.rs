@@ -1,4 +1,6 @@
-use crate::{PriceBridgesSettings, SendGridSettingsModel, TrackBoxSettingsModel};
+use crate::{
+    BinanceFeedSettings, PriceBridgesSettings, SendGridSettingsModel, TrackBoxSettingsModel,
+};
 
 service_sdk::macros::use_my_no_sql_entity!();
 
@@ -7,4 +9,5 @@ pub enum ProductSettings {
     SendGrid(SendGridSettingsModel),
     TrackBox(TrackBoxSettingsModel),
     PriceBridgesSettings(PriceBridgesSettings),
+    BinanceFeedSettings(BinanceFeedSettings),
 }
