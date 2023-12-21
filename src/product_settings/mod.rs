@@ -14,3 +14,5 @@ mod recaptcha_settings;
 pub use recaptcha_settings::*;
 mod brand_settings;
 pub use brand_settings::*;
+mod yb_a_book_settings;
+pub use yb_a_book_settings::*;
