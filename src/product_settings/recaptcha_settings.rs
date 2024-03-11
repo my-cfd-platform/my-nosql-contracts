@@ -7,4 +7,5 @@ pub struct RecaptchaSettings {
     pub public_key: String,
     pub secret_key: String,
     pub score_to_verify: f64,
+    pub disabled: bool,
 }
