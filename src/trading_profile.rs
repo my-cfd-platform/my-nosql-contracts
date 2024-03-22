@@ -5,7 +5,6 @@ service_sdk::macros::use_my_no_sql_entity!();
 #[serde(rename_all = "PascalCase")]
 pub struct TradingProfileNoSqlEntity {
     pub id: String,
-    pub margin_call_percent: f64,
     pub stop_out_percent: f64,
     pub position_topping_up_percent: f64,
     pub is_a_book: bool,
