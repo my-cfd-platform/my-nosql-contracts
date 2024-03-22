@@ -9,6 +9,10 @@ pub struct TradingProfileNoSqlEntity {
     pub stop_out_percent: f64,
     pub position_topping_up_percent: f64,
     pub is_a_book: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub margin_call_percent: Option<f64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub topping_up_percent: Option<f64>,
     pub instruments: Vec<TradingProfileInstrument>,
 }
 
