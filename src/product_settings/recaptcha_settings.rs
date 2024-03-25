@@ -8,4 +8,5 @@ pub struct RecaptchaSettings {
     pub secret_key: String,
     pub score_to_verify: f64,
     pub disabled: bool,
+    pub ignore_hosts: Option<Vec<String>>,
 }
