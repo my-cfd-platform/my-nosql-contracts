@@ -16,3 +16,5 @@ mod brand_settings;
 pub use brand_settings::*;
 mod yb_a_book_settings;
 pub use yb_a_book_settings::*;
+mod yb_price_feed_settings;
+pub use yb_price_feed_settings::*;
