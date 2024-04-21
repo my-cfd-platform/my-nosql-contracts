@@ -1,6 +1,6 @@
 use crate::{
     BinanceFeedSettings, BrandSettings, PriceBridgesSettings, RecaptchaSettings,
-    SendGridSettingsModel, TrackBoxSettingsModel, YbABookSettings,
+    SendGridSettingsModel, TrackBoxSettingsModel, YbABookSettings, YbPriceFeedSettings,
 };
 
 service_sdk::macros::use_my_no_sql_entity!();
@@ -14,4 +14,5 @@ pub enum ProductSettings {
     RecaptchaSettings(RecaptchaSettings),
     BrandSettings(BrandSettings),
     YbABookSettings(YbABookSettings),
+    YbPriceFeedSettings(YbPriceFeedSettings),
 }
