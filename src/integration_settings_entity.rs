@@ -1,14 +1,15 @@
 use serde::{Deserialize, Serialize};
 service_sdk::macros::use_my_no_sql_entity!();
 
-/*
 #[my_no_sql_entity("integration-settings")]
 #[derive(Serialize, Deserialize, Debug, Clone)]
+#[deprecated]
 pub struct IntegrationSettingsMyNoSqlEntity {
     #[serde(rename = "Name")]
     name: String,
 }
 
+#[deprecated]
 impl IntegrationSettingsMyNoSqlEntity {
     pub fn generate_partition_key() -> &'static str {
         "is"
@@ -22,8 +23,6 @@ impl IntegrationSettingsMyNoSqlEntity {
         &self.row_key
     }
 }
-
- */
 
 #[my_no_sql_entity("integration-settings")]
 #[derive(Serialize, Deserialize, Debug, Clone)]
