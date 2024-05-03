@@ -11,6 +11,7 @@ pub struct TradingGroupNoSqlEntity {
     pub trading_profile_id: String,
     pub markup_profile_id: String,
     pub swap_profile_id: String,
+    pub kyc_profile_id: Option<String>,
     pub trading_disabled: bool,
 }
 
