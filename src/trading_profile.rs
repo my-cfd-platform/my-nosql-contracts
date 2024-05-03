@@ -11,6 +11,7 @@ pub struct TradingProfileNoSqlEntity {
     pub margin_call_percent: Option<f64>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub topping_up_percent: Option<f64>,
+    pub initial_account_deposit: Option<f64>,
     pub instruments: Vec<TradingProfileInstrument>,
 }
 
