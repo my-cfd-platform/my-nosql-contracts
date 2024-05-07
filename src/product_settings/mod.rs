@@ -8,8 +8,7 @@ mod send_grid_settings;
 pub use send_grid_settings::*;
 mod price_bridges_settings;
 pub use price_bridges_settings::*;
-mod binance_price_feed_settings;
-pub use binance_price_feed_settings::*;
+
 mod recaptcha_settings;
 pub use recaptcha_settings::*;
 mod brand_settings;
