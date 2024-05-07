@@ -17,6 +17,10 @@ mod swap_schedule_model;
 mod trading_group;
 mod trading_instrument;
 mod trading_profile;
+#[cfg(feature = "isolated-margin")]
+mod isolated_margin;
+#[cfg(feature = "cross-margin")]
+mod cross_margin;
 
 pub use bid_ask_snapshot_model::*;
 pub use default_favorite_instruments::*;
@@ -37,3 +41,7 @@ pub use swap_schedule_model::*;
 pub use trading_group::*;
 pub use trading_instrument::*;
 pub use trading_profile::*;
+#[cfg(feature = "isolated-margin")]
+pub use isolated_margin::*;
+#[cfg(feature = "cross-margin")]
+pub use cross_margin::*;
