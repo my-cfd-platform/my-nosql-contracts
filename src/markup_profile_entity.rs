@@ -1,7 +1,6 @@
 service_sdk::macros::use_my_no_sql_entity!();
-use std::{collections::HashMap, hash::Hash};
+use std::collections::HashMap;
 
-use rust_extensions::StrOrString;
 use serde::{Deserialize, Serialize};
 
 #[my_no_sql_entity("markup-profiles")]
@@ -16,6 +15,8 @@ pub struct MarkupProfileNpSqlEntity {
 }
 
 impl MarkupProfileNpSqlEntity {
+    pub const GLOBAL_PROFILE_ID: &'static str = "GLOBAL";
+
     pub fn generate_partition_key() -> &'static str {
         "markup"
     }
