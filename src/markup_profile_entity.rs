@@ -7,8 +7,6 @@ use serde::{Deserialize, Serialize};
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct MarkupProfileNoSqlEntity {
     pub name: String,
-    pub bid: i64,
-    pub ask: i64,
     pub disabled: bool,
     pub instruments: HashMap<String, MarkupInstrumentEntity>,
 }
@@ -31,6 +29,6 @@ impl MarkupProfileNoSqlEntity {
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct MarkupInstrumentEntity {
-    pub markup_bid: i64,
-    pub markup_ask: i64,
+    pub markup_bid: i32,
+    pub markup_ask: i32,
 }
