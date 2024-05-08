@@ -5,6 +5,7 @@ use serde::{Deserialize, Serialize};
 
 #[my_no_sql_entity("markup-profiles")]
 #[derive(Serialize, Deserialize, Debug, Clone)]
+#[serde(rename_all = "PascalCase")]
 pub struct MarkupProfileNoSqlEntity {
     pub name: String,
     pub disabled: bool,
@@ -28,6 +29,7 @@ impl MarkupProfileNoSqlEntity {
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
+#[serde(rename_all = "PascalCase")]
 pub struct MarkupInstrumentEntity {
     pub markup_bid: i32,
     pub markup_ask: i32,
