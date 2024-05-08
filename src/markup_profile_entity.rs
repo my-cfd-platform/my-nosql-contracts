@@ -5,16 +5,15 @@ use serde::{Deserialize, Serialize};
 
 #[my_no_sql_entity("markup-profiles")]
 #[derive(Serialize, Deserialize, Debug, Clone)]
-pub struct MarkupProfileNpSqlEntity {
+pub struct MarkupProfileNoSqlEntity {
     pub name: String,
     pub bid: i64,
     pub ask: i64,
     pub disabled: bool,
-
     pub instruments: HashMap<String, MarkupInstrumentEntity>,
 }
 
-impl MarkupProfileNpSqlEntity {
+impl MarkupProfileNoSqlEntity {
     pub const GLOBAL_PROFILE_ID: &'static str = "GLOBAL";
 
     pub fn generate_partition_key() -> &'static str {
