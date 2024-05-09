@@ -45,6 +45,12 @@ impl DefaultsNoSqlEntity {
         // cSpell:enable
     }
 
+    pub fn row_key_as_available_collaterals() -> &'static str {
+        // cSpell:disable
+        "collateral_currencies"
+        // cSpell:enable
+    }
+
     pub fn get_asset_id(&self) -> &str {
         &self.row_key
     }
