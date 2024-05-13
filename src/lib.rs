@@ -14,9 +14,6 @@ mod price_change_model;
 mod product_settings;
 mod swap_profile_model;
 mod swap_schedule_model;
-mod trading_group;
-mod trading_instrument;
-mod trading_profile;
 #[cfg(feature = "isolated-margin")]
 mod isolated_margin;
 #[cfg(feature = "cross-margin")]
@@ -38,9 +35,6 @@ pub use price_change_model::*;
 pub use product_settings::*;
 pub use swap_profile_model::*;
 pub use swap_schedule_model::*;
-pub use trading_group::*;
-pub use trading_instrument::*;
-pub use trading_profile::*;
 #[cfg(feature = "isolated-margin")]
 pub use isolated_margin::*;
 #[cfg(feature = "cross-margin")]
