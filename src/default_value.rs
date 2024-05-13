@@ -47,7 +47,13 @@ impl DefaultsNoSqlEntity {
 
     pub fn row_key_as_available_collaterals() -> &'static str {
         // cSpell:disable
-        "collateral_currencies"
+        "CollaterallCurrencies"
+        // cSpell:enable
+    }
+
+    pub fn row_key_as_default_trading_group() -> &'static str {
+        // cSpell:disable
+        "TradingGroup"
         // cSpell:enable
     }
 
