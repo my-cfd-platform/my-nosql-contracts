@@ -9,7 +9,7 @@ pub struct TradingGroupNoSqlEntity {
     pub id: String,
     pub name: String,
     pub trading_profile_id: String,
-    pub markup_profile_id: String,
+    pub markup_profile_id: Option<String>,
     pub swap_profile_id: String,
     pub trading_disabled: bool,
 }
