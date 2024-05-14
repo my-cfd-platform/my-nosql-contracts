@@ -57,6 +57,8 @@ impl DefaultsNoSqlEntity {
         // cSpell:enable
     }
 
+    pub const ROW_KEY_SEQUENCE_ACCOUNT_ID: &'static str = "SeqAccountId";
+
     pub fn get_asset_id(&self) -> &str {
         &self.row_key
     }
