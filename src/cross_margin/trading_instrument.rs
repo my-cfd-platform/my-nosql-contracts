@@ -17,7 +17,6 @@ pub struct TradingInstrumentNoSqlEntity {
     pub trading_disabled: bool,
     pub lots_size: f64,
     pub days_off: Vec<TradingInstrumentDayOff>,
-    pub leverage: f64,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]

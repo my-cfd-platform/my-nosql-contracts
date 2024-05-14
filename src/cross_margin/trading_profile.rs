@@ -25,6 +25,7 @@ pub struct TradingProfileInstrument {
     pub open_position_min_delay_ms: i32,
     pub open_position_max_delay_ms: i32,
     pub stop_out_percent: Option<f64>,
+    pub instrument_max_leverage: Option<f64>
 }
 
 impl TradingProfileNoSqlEntity {
