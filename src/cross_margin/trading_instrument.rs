@@ -15,7 +15,7 @@ pub struct TradingInstrumentNoSqlEntity {
     pub day_timeout: Option<i32>,
     pub night_timeout: Option<i32>,
     pub trading_disabled: bool,
-    pub lots_size: f64,
+    pub lot_size: f64,
     pub days_off: Vec<TradingInstrumentDayOff>,
 }
 
