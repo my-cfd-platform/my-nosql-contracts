@@ -9,10 +9,10 @@ pub struct TradingProfileNoSqlEntity {
     pub is_a_book: bool,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub margin_call_percent: Option<f64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub topping_up_percent: Option<f64>,
     pub instruments: Vec<TradingProfileInstrument>,
-    pub leverages: Vec<f64>
+    pub leverages: Vec<f64>,
+    pub collateral_currencies: Vec<String>,
+    pub initial_deposit: f64,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
