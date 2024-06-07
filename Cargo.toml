@@ -9,6 +9,7 @@ edition = "2021"
 default = []
 isolated-margin = []
 cross-margin = []
+price-src = []
 
 [dependencies]
 service-sdk = { tag = "0.2.5", git = "https://github.com/MyJetTools/service-sdk.git", features = [
