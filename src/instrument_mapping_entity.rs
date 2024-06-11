@@ -6,6 +6,10 @@ use std::collections::HashMap;
 pub struct InstrumentMappingEntity {
     #[serde(rename = "Map")]
     pub map: HashMap<String, String>,
+    #[serde(rename = "Id")]
+    pub id: Option<String>,
+    #[serde(rename = "LpId")]
+    pub lp_id: Option<String>,
 }
 
 impl InstrumentMappingEntity {
