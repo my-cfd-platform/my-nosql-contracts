@@ -17,3 +17,5 @@ mod yb_a_book_settings;
 pub use yb_a_book_settings::*;
 mod yb_price_feed_settings;
 pub use yb_price_feed_settings::*;
+mod wl_price_feed_settings;
+pub use wl_price_feed_settings::*;
