@@ -6,7 +6,7 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [features]
-default = ["price-src"]
+default = []
 isolated-margin = []
 cross-margin = []
 price-src = []
