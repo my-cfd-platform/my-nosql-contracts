@@ -1,4 +1,5 @@
 use serde::{Deserialize, Serialize};
+use service_sdk::rust_extensions::sorted_vec::EntityWithStrKey;
 service_sdk::macros::use_my_no_sql_entity!();
 #[my_no_sql_entity("bid-ask-src")]
 #[derive(Serialize, Deserialize, Debug, Clone)]
@@ -16,6 +17,12 @@ impl PriceSourceIdMyNoSqlEntity {
     }
 
     pub fn generate_row_key(&self) -> &str {
+        &self.row_key
+    }
+}
+
+impl EntityWithStrKey for PriceSourceIdMyNoSqlEntity {
+    fn get_key(&self) -> &str {
         &self.row_key
     }
 }
