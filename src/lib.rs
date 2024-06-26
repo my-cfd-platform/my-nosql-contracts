@@ -39,5 +39,7 @@ pub use price_change_model::*;
 pub use product_settings::*;
 pub use swap_profile_model::*;
 pub use swap_schedule_model::*;
+mod brand_resolver;
 #[cfg(feature = "price-src")]
 pub mod price_src;
+pub use brand_resolver::*;
