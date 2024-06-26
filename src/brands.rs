@@ -48,7 +48,7 @@ pub struct BrandMyNoSqlEntity {
     pub mobile_app_logo: Option<String>,
 }
 
-impl BrandResolverMyNoSqlEntity {
+impl BrandMyNoSqlEntity {
     pub const PARTITION_KEY: &'static str = "b";
 
     pub fn get_domain(&self) -> &str {
