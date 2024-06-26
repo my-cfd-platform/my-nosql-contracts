@@ -8,7 +8,7 @@ pub struct BrandResolverMyNoSqlEntity {
 }
 
 impl BrandResolverMyNoSqlEntity {
-    const PARTITION_KEY: &'static str = "b";
+    pub const PARTITION_KEY: &'static str = "b";
 
     pub fn get_domain(&self) -> &str {
         self.row_key.as_str()
