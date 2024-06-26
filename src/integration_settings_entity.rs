@@ -8,6 +8,7 @@ pub struct IntegrationTenantMyNoSqlEntity {
     pub api_keys: Vec<String>,
     pub allowed_ip: Option<Vec<String>>,
     pub allowed_trading_groups: Option<Vec<String>>,
+    pub brand: Option<String>,
 }
 
 impl IntegrationTenantMyNoSqlEntity {
