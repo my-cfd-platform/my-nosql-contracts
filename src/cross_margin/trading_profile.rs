@@ -13,6 +13,7 @@ pub struct TradingProfileNoSqlEntity {
     pub leverages: Vec<f64>,
     pub collateral_currencies: Vec<String>,
     pub initial_deposit: f64,
+    pub hedge_margin_coefficient: f64,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
