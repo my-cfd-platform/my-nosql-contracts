@@ -18,3 +18,4 @@ service-sdk = { tag = "0.2.5", git = "https://github.com/MyJetTools/service-sdk.
 ] }
 
 serde = { version = "*", features = ["derive"] }
+chrono = {version = "*", features = ["serde"]}
