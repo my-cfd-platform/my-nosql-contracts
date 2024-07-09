@@ -12,10 +12,10 @@ cross-margin = []
 price-src = []
 
 [dependencies]
-service-sdk = { tag = "0.2.5", git = "https://github.com/MyJetTools/service-sdk.git", features = [
+service-sdk = { tag = "0.2.6", git = "https://github.com/MyJetTools/service-sdk.git", features = [
     "macros",
     "my-nosql-sdk",
 ] }
 
 serde = { version = "*", features = ["derive"] }
-chrono = {version = "*", features = ["serde"]}
+chrono = { version = "*", features = ["serde"] }
