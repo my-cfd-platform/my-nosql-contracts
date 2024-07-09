@@ -60,5 +60,5 @@ pub struct BrandSettings {
     pub hide_kyc_content: Option<bool>,
 
     #[serde(rename = "defaultChartTimeFrame")]
-    pub default_chart_time_frame: Option<bool>,
+    pub default_chart_time_frame: Option<String>,
 }
