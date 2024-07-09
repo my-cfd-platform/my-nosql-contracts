@@ -48,17 +48,17 @@ pub struct BrandSettings {
     pub login_url: Option<String>,
 
     #[serde(rename = "hideSecurityTab")]
-    pub hide_security_tab: bool,
+    pub hide_security_tab: Option<bool>,
 
     #[serde(rename = "hideAccountInfo")]
-    pub hide_account_info: bool,
+    pub hide_account_info: Option<bool>,
 
     #[serde(rename = "hideVolumeAmountInCurrency")]
-    pub hide_volume_amount_in_currency: bool,
+    pub hide_volume_amount_in_currency: Option<bool>,
 
     #[serde(rename = "hideKycContent")]
-    pub hide_kyc_content: bool,
+    pub hide_kyc_content: Option<bool>,
 
     #[serde(rename = "defaultChartTimeFrame")]
-    pub default_chart_time_frame: bool,
+    pub default_chart_time_frame: Option<bool>,
 }
