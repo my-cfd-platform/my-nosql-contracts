@@ -14,6 +14,7 @@ pub struct TradingProfileNoSqlEntity {
     pub collateral_currencies: Vec<String>,
     pub initial_deposit: f64,
     pub hedge_margin_coefficient: f64,
+    pub commission_per_lot: Option<f64>,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
@@ -26,7 +27,7 @@ pub struct TradingProfileInstrument {
     pub open_position_min_delay_ms: i32,
     pub open_position_max_delay_ms: i32,
     pub stop_out_percent: Option<f64>,
-    pub instrument_max_leverage: Option<f64>
+    pub instrument_max_leverage: Option<f64>,
 }
 
 impl TradingProfileNoSqlEntity {
