@@ -52,13 +52,14 @@ pub struct TradingInstrumentDayOff {
 
 fn to_week_day(id: &str, value: i32) -> Weekday {
     match value {
-        0 => Weekday::Mon,
-        1 => Weekday::Tue,
-        2 => Weekday::Wed,
-        3 => Weekday::Thu,
-        4 => Weekday::Fri,
-        5 => Weekday::Sat,
-        6 => Weekday::Sun,
+        0 => Weekday::Sun,
+        1 => Weekday::Mon,
+        2 => Weekday::Tue,
+        3 => Weekday::Wed,
+        4 => Weekday::Thu,
+        5 => Weekday::Fri,
+        6 => Weekday::Sat,
+
         _ => panic!("Invalid week day '{}' for instrument: {}", value, id),
     }
 }
