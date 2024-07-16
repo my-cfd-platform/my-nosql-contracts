@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 
 use chrono::Weekday;
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 service_sdk::macros::use_my_no_sql_entity!();
 
 #[my_no_sql_entity("swap-schedules")]
@@ -15,7 +15,7 @@ pub struct SwapScheduleNoSqlModel {
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
-pub struct SwapDaySchedule{
+pub struct SwapDaySchedule {
     pub time: String,
-    pub swap_multiplier: f64
+    pub swap_multiplier: f64,
 }

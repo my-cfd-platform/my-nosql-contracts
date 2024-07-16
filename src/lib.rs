@@ -43,3 +43,5 @@ mod brands;
 #[cfg(feature = "price-src")]
 pub mod price_src;
 //pub use brands::*;
+mod trading_instrument;
+pub use trading_instrument::*;

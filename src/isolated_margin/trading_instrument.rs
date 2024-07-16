@@ -1,4 +1,6 @@
 use serde::{Deserialize, Serialize};
+
+use crate::TradingInstrumentDayOff;
 service_sdk::macros::use_my_no_sql_entity!();
 #[my_no_sql_entity("instruments")]
 #[derive(Serialize, Deserialize, Debug, Clone)]
@@ -18,15 +20,6 @@ pub struct TradingInstrumentNoSqlEntity {
     pub days_off: Vec<TradingInstrumentDayOff>,
 }
 
-#[derive(Serialize, Deserialize, Debug, Clone)]
-#[serde(rename_all = "PascalCase")]
-pub struct TradingInstrumentDayOff {
-    pub dow_from: i32,
-    pub time_from: String,
-    pub dow_to: i32,
-    pub time_to: String,
-}
-
 impl TradingInstrumentNoSqlEntity {
     pub fn generate_partition_key() -> &'static str {
         "i"
@@ -34,5 +27,15 @@ impl TradingInstrumentNoSqlEntity {
 
     pub fn get_id(&self) -> &str {
         &self.row_key
+    }
+}
+
+impl crate::TradingInstrument for TradingInstrumentNoSqlEntity {
+    fn get_id(&self) -> &str {
+        &self.row_key
+    }
+
+    fn get_day_offs(&self) -> &[TradingInstrumentDayOff] {
+        &self.days_off
     }
 }
