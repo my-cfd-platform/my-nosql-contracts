@@ -74,7 +74,7 @@ pub struct BrandSettings {
     #[serde(rename = "RecaptchaPrivateKey")]
     pub recaptcha_private_key: Option<String>,
 
-    #[serde(rename = "RecaptchaPrivateKey")]
+    #[serde(rename = "RecaptchaScoreToVerify")]
     pub recaptcha_score_to_verify: Option<f64>,
 
     #[serde(rename = "defaultChartTimeFrame")]
