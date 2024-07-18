@@ -65,6 +65,21 @@ pub struct BrandSettings {
     #[serde(rename = "hideSignUp")]
     pub hide_sign_up: Option<bool>,
 
+    #[serde(rename = "hideAboutPageUrl")]
+    pub hide_about_page_url: Option<bool>,
+
+    #[serde(rename = "RecaptchaPublicKey")]
+    pub recaptcha_public_key: Option<String>,
+
+    #[serde(rename = "RecaptchaPrivateKey")]
+    pub recaptcha_private_key: Option<String>,
+
+    #[serde(rename = "RecaptchaPrivateKey")]
+    pub recaptcha_score_to_verify: Option<f64>,
+
+    #[serde(rename = "RecaptchaIgnoreHosts")]
+    pub recaptcha_ignore_hosts: Option<Vec<String>>,
+
     #[serde(rename = "defaultChartTimeFrame")]
     pub default_chart_time_frame: Option<String>,
 }
