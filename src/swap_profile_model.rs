@@ -21,12 +21,14 @@ impl SwapProfileNoSqlModel {
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
+#[serde(rename_all = "PascalCase")]
 pub enum SwapScheduleType {
     Percent(SwapProfileInstrumentNoSqlModel),
     Points(SwapProfileInstrumentNoSqlModel),
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
+#[serde(rename_all = "PascalCase")]
 pub struct SwapProfileInstrumentNoSqlModel {
     pub long: f64,
     pub short: f64,

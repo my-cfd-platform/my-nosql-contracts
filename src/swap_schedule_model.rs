@@ -15,6 +15,7 @@ pub struct SwapScheduleNoSqlModel {
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
+#[serde(rename_all = "PascalCase")]
 pub struct SwapDaySchedule {
     pub time: String,
     pub swap_multiplier: f64,
