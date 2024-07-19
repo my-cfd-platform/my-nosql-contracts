@@ -11,7 +11,7 @@ pub struct SwapScheduleNoSqlModel {
     pub id: String,
     pub name: String,
     //key - dow, value - day schedule
-    pub weak_schedules: HashMap<Weekday, SwapDaySchedule>,
+    pub week_schedules: HashMap<Weekday, SwapDaySchedule>,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
