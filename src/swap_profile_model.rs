@@ -1,9 +1,7 @@
 use std::collections::HashMap;
 
-use chrono::Weekday;
 use serde::{Deserialize, Serialize};
 
-use crate::{SwapDaySchedule, SwapScheduleNoSqlModel};
 service_sdk::macros::use_my_no_sql_entity!();
 #[my_no_sql_entity("swap-profiles")]
 #[derive(Serialize, Deserialize, Debug, Clone)]

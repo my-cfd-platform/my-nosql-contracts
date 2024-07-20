@@ -30,10 +30,18 @@ pub trait TradingInstrument {
             let dow_to: Weekday = to_week_day(self.get_id(), day_off.dow_to);
             let micro_seconds_to = time_to.unwrap().to_micro_second_withing_week(dow_to);
 
-            if micro_seconds_from <= microseconds_with_in_week_now
-                && microseconds_with_in_week_now <= micro_seconds_to
-            {
-                return true;
+            if micro_seconds_from < micro_seconds_to {
+                if micro_seconds_from <= microseconds_with_in_week_now
+                    && microseconds_with_in_week_now <= micro_seconds_to
+                {
+                    return true;
+                }
+            } else {
+                if micro_seconds_from >= microseconds_with_in_week_now
+                    && microseconds_with_in_week_now >= micro_seconds_to
+                {
+                    return true;
+                }
             }
         }
 
@@ -70,6 +78,18 @@ mod tests {
 
     use crate::{TradingInstrument, TradingInstrumentDayOff};
 
+    fn week_day_to_i32(weekday: chrono::Weekday) -> i32 {
+        match weekday {
+            chrono::Weekday::Sun => 0,
+            chrono::Weekday::Mon => 1,
+            chrono::Weekday::Tue => 2,
+            chrono::Weekday::Wed => 3,
+            chrono::Weekday::Thu => 4,
+            chrono::Weekday::Fri => 5,
+            chrono::Weekday::Sat => 6,
+        }
+    }
+
     pub struct TestTradingInstrument {
         pub id: String,
         pub day_offs: Vec<TradingInstrumentDayOff>,
@@ -90,9 +110,9 @@ mod tests {
         let instrument = TestTradingInstrument {
             id: "EURUSD".to_string(),
             day_offs: vec![TradingInstrumentDayOff {
-                dow_from: 0,
+                dow_from: week_day_to_i32(chrono::Weekday::Mon),
                 time_from: "12:00:00".to_string(),
-                dow_to: 0,
+                dow_to: week_day_to_i32(chrono::Weekday::Mon),
                 time_to: "12:30:00".to_string(),
             }],
         };
@@ -112,5 +132,22 @@ mod tests {
         //Monday but 12:30:01
         let now = DateTimeAsMicroseconds::from_str("2024-07-15T12:30:01").unwrap();
         assert!(!instrument.is_day_off(now));
+    }
+
+    #[test]
+    fn test_with_week_crossed() {
+        let instrument = TestTradingInstrument {
+            id: "EURUSD".to_string(),
+            day_offs: vec![TradingInstrumentDayOff {
+                dow_from: week_day_to_i32(chrono::Weekday::Sun),
+                time_from: "23:59:59".to_string(),
+                dow_to: week_day_to_i32(chrono::Weekday::Mon),
+                time_to: "00:00:00".to_string(),
+            }],
+        };
+
+        //Sunday
+        let now = DateTimeAsMicroseconds::from_str("2024-07-14T12:30:00").unwrap();
+        assert!(instrument.is_day_off(now));
     }
 }
