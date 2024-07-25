@@ -20,6 +20,7 @@ impl SwapProfileNoSqlModel {
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 #[serde(rename_all = "PascalCase")]
+
 pub enum SwapScheduleType {
     Percent(SwapProfileInstrumentNoSqlModel),
     Points(SwapProfileInstrumentNoSqlModel),
@@ -33,48 +34,98 @@ pub struct SwapProfileInstrumentNoSqlModel {
     pub schedules: Vec<String>,
 }
 
-// #[test]
-// pub fn test_serialize() {
-//     let swap = SwapScheduleNoSqlModel {
-//         partition_key: "ads".to_string(),
-//         row_key: "asd".to_string(),
-//         time_stamp: "asddsa".to_string(),
-//         id: "asd".to_string(),
-//         name: "asd".to_string(),
-//         weak_schedules: HashMap::from_iter(vec![(Weekday::Mon ,SwapDaySchedule {
-//             time: "as".to_string(),
-//             swap_multiplier: 1233.0,
-//         })]),
-//     };
+#[test]
+pub fn test_serialize() {
+    let json_data = r#"
+    [
+        {
+            "Id": "test",
+            "Name": "Test",
+            "InstrumentsSwaps": {
+                "AAL": {
+                    "Percent": {
+                        "Long": 1.0,
+                        "Short": 1.0,
+                        "Schedules": [
+                            "test"
+                        ]
+                    }
+                },
+                "AAPL": {
+                    "Percent": {
+                        "Long": -1.0,
+                        "Short": 1.0,
+                        "Schedules": [
+                            "test"
+                        ]
+                    }
+                },
+                "AMD": {
+                    "Percent": null,
+                    "Points": {
+                        "Long": 0.0,
+                        "Short": 0.0,
+                        "Schedules": [
+                            "test"
+                        ]
+                    }
+                }
+            },
+            "PartitionKey": "swap_profile",
+            "RowKey": "test",
+            "TimeStamp": "2024-07-18T21:44:44.8151"
+        }
+    ]
+    "#;
 
-//     let mut hs = HashMap::new();
+    let model: Vec<SwapProfileNoSqlModel> = serde_json::from_str(&json_data).unwrap();
 
-//     hs.insert(
-//         "BTCUSD".to_string(),
-//         SwapScheduleType::Percent(SwapProfileInstrumentNoSqlModel {
-//             long: 254.0,
-//             short: 254.0,
-//             schedules: vec![swap.clone()],
-//         }),
-//     );
+    println!("{:#?}", model);
+}
 
-//     hs.insert(
-//         "ETHUSD".to_string(),
-//         SwapScheduleType::Points(SwapProfileInstrumentNoSqlModel {
-//             long: 254.0,
-//             short: 254.0,
-//             schedules: vec![swap],
-//         }),
-//     );
+#[test]
+pub fn test_serialize_2() {
+    let model = SwapProfileNoSqlModel {
+        partition_key: "swap_profile".to_string(),
+        row_key: "test".to_string(),
+        time_stamp: "2024-07-18T21:44:44.8151".to_string(),
+        id: "test".to_string(),
+        name: "Test".to_string(),
+        instruments_swaps: HashMap::from_iter(vec![
+            (
+                "AAL".to_string(),
+                SwapScheduleType::Percent(SwapProfileInstrumentNoSqlModel {
+                    long: 1.0,
+                    short: 1.0,
+                    schedules: vec!["test".to_string()],
+                }),
+            ),
+            (
+                "AAPL".to_string(),
+                SwapScheduleType::Percent(SwapProfileInstrumentNoSqlModel {
+                    long: -1.0,
+                    short: 1.0,
+                    schedules: vec!["test".to_string()],
+                }),
+            ),
+            (
+                "AMD".to_string(),
+                SwapScheduleType::Percent(SwapProfileInstrumentNoSqlModel {
+                    long: 0.0,
+                    short: 0.0,
+                    schedules: vec!["test".to_string()],
+                }),
+            ),
+            (
+                "BTCYFT".to_string(),
+                SwapScheduleType::Points(SwapProfileInstrumentNoSqlModel {
+                    long: 0.0,
+                    short: 0.0,
+                    schedules: vec!["test2".to_string(), "test3".to_string()],
+                }),
+            ),
+        ]),
+    };
 
-//     let model = SwapProfileNoSqlModel {
-//         partition_key: "as".to_string(),
-//         row_key: "as".to_string(),
-//         time_stamp: "as".to_string(),
-//         id: "as".to_string(),
-//         name: "as".to_string(),
-//         instruments_swaps: hs,
-//     };
-
-//     println!("{}", serde_json::to_string(&model).unwrap());
-// }
+    println!("{}", serde_json::to_string(&model).unwrap());
+}

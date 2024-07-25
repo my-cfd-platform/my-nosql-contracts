@@ -36,12 +36,10 @@ pub trait TradingInstrument {
                 {
                     return true;
                 }
-            } else {
-                if micro_seconds_from >= microseconds_with_in_week_now
-                    && microseconds_with_in_week_now >= micro_seconds_to
-                {
-                    return true;
-                }
+            } else if micro_seconds_from >= microseconds_with_in_week_now
+                && microseconds_with_in_week_now >= micro_seconds_to
+            {
+                return true;
             }
         }
 
