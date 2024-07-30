@@ -148,4 +148,42 @@ mod tests {
         let now = DateTimeAsMicroseconds::from_str("2024-07-14T12:30:00").unwrap();
         assert!(instrument.is_day_off(now));
     }
+
+    #[test]
+    fn test_weekend_of_audcad() {
+        let instrument = TestTradingInstrument {
+            id: "EURUSD".to_string(),
+            day_offs: vec![TradingInstrumentDayOff {
+                dow_from: week_day_to_i32(chrono::Weekday::Fri),
+                time_from: "20:59:59".to_string(),
+                dow_to: week_day_to_i32(chrono::Weekday::Sun),
+                time_to: "21:00:00".to_string(),
+            }],
+        };
+
+        //Sunday
+        let now = DateTimeAsMicroseconds::from_str("2024-07-14T12:30:00").unwrap();
+        assert!(instrument.is_day_off(now));
+
+        let now = DateTimeAsMicroseconds::from_str("2024-08-02T20:59:58").unwrap();
+        assert!(!instrument.is_day_off(now));
+
+        let now = DateTimeAsMicroseconds::from_str("2024-08-02T20:59:59").unwrap();
+        assert!(instrument.is_day_off(now));
+
+        //Saturday
+        let now = DateTimeAsMicroseconds::from_str("2024-08-03T20:00:00").unwrap();
+        assert!(instrument.is_day_off(now));
+
+        //Sunday
+        let now = DateTimeAsMicroseconds::from_str("2024-08-04T20:59:59").unwrap();
+        assert!(instrument.is_day_off(now));
+
+        //Sunday
+        let now = DateTimeAsMicroseconds::from_str("2024-08-04T21:00:00").unwrap();
+        assert!(instrument.is_day_off(now));
+
+        let now = DateTimeAsMicroseconds::from_str("2024-08-01T21:00:01").unwrap();
+        assert!(!instrument.is_day_off(now));
+    }
 }
