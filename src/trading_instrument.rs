@@ -36,8 +36,8 @@ pub trait TradingInstrument {
                 {
                     return true;
                 }
-            } else if micro_seconds_from >= microseconds_with_in_week_now
-                && microseconds_with_in_week_now >= micro_seconds_to
+            } else if micro_seconds_from <= microseconds_with_in_week_now
+                || microseconds_with_in_week_now <= micro_seconds_to
             {
                 return true;
             }
@@ -146,7 +146,18 @@ mod tests {
 
         //Sunday
         let now = DateTimeAsMicroseconds::from_str("2024-07-14T12:30:00").unwrap();
+        assert!(!instrument.is_day_off(now));
+        //Sunday
+        let now = DateTimeAsMicroseconds::from_str("2024-07-14T23:59:59").unwrap();
         assert!(instrument.is_day_off(now));
+
+        //Monday
+        let now = DateTimeAsMicroseconds::from_str("2024-07-15T00:00:00").unwrap();
+        assert!(instrument.is_day_off(now));
+
+        //Monday
+        let now = DateTimeAsMicroseconds::from_str("2024-07-15T00:00:01").unwrap();
+        assert!(!instrument.is_day_off(now));
     }
 
     #[test]
@@ -190,13 +201,47 @@ mod tests {
     #[test]
     fn test_week_day_of_xau_usd() {
         let instrument = TestTradingInstrument {
-            id: "EURUSD".to_string(),
-            day_offs: vec![TradingInstrumentDayOff {
-                dow_from: week_day_to_i32(chrono::Weekday::Fri),
-                time_from: "20:59:59".to_string(),
-                dow_to: week_day_to_i32(chrono::Weekday::Sun),
-                time_to: "21:00:00".to_string(),
-            }],
+            id: "XAUUSD".to_string(),
+            day_offs: vec![
+                TradingInstrumentDayOff {
+                    dow_from: 2,
+                    time_from: "00:00:00".to_string(),
+                    dow_to: 2,
+                    time_to: "01:00:00".to_string(),
+                },
+                TradingInstrumentDayOff {
+                    dow_from: 3,
+                    time_from: "00:00:00".to_string(),
+                    dow_to: 3,
+                    time_to: "01:00:00".to_string(),
+                },
+                TradingInstrumentDayOff {
+                    dow_from: 4,
+                    time_from: "00:00:00".to_string(),
+                    dow_to: 4,
+                    time_to: "01:00:00".to_string(),
+                },
+                TradingInstrumentDayOff {
+                    dow_from: 5,
+                    time_from: "00:00:00".to_string(),
+                    dow_to: 5,
+                    time_to: "01:00:00".to_string(),
+                },
+                TradingInstrumentDayOff {
+                    dow_from: 5,
+                    time_from: "23:59:00".to_string(),
+                    dow_to: 1,
+                    time_to: "01:00:00".to_string(),
+                },
+            ],
         };
+
+        // Wednesday
+        let now = DateTimeAsMicroseconds::from_str("2024-07-31T10:12:01").unwrap();
+        assert!(!instrument.is_day_off(now));
+
+        // Sunday
+        let now = DateTimeAsMicroseconds::from_str("2024-08-04T10:12:01").unwrap();
+        assert!(instrument.is_day_off(now));
     }
 }
