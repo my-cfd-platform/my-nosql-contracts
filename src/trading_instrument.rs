@@ -186,4 +186,17 @@ mod tests {
         let now = DateTimeAsMicroseconds::from_str("2024-08-01T21:00:01").unwrap();
         assert!(!instrument.is_day_off(now));
     }
+
+    #[test]
+    fn test_week_day_of_xau_usd() {
+        let instrument = TestTradingInstrument {
+            id: "EURUSD".to_string(),
+            day_offs: vec![TradingInstrumentDayOff {
+                dow_from: week_day_to_i32(chrono::Weekday::Fri),
+                time_from: "20:59:59".to_string(),
+                dow_to: week_day_to_i32(chrono::Weekday::Sun),
+                time_to: "21:00:00".to_string(),
+            }],
+        };
+    }
 }
