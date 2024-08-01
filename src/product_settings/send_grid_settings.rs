@@ -2,7 +2,7 @@ use std::collections::HashMap;
 
 use serde::*;
 
-use crate::EmailType;
+use super::EmailType;
 
 service_sdk::macros::use_my_no_sql_entity!();
 
