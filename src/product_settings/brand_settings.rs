@@ -79,4 +79,10 @@ pub struct BrandSettings {
 
     #[serde(rename = "defaultChartTimeFrame")]
     pub default_chart_time_frame: Option<String>,
+
+    #[serde(rename = "pwaIconUrl")]
+    pub pwa_icon_url: Option<String>,
+
+    #[serde(rename = "pwaBackgroundColor")]
+    pub pwa_background_color: Option<String>,
 }
