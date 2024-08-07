@@ -2,17 +2,12 @@ use chrono::Weekday;
 use serde::*;
 use service_sdk::rust_extensions::date_time::{DateTimeAsMicroseconds, DateTimeStruct, TimeStruct};
 
-pub struct DayOffData<'s> {
-    pub day_off: &'s TradingInstrumentDayOff,
-    pub microseconds_with_in_week_moment: u64,
-}
-
 pub trait TradingInstrument {
     fn get_id(&self) -> &str;
 
     fn get_day_offs(&self) -> &[TradingInstrumentDayOff];
 
-    fn is_day_off(&self, moment: DateTimeAsMicroseconds) -> Option<DayOffData> {
+    fn is_day_off(&self, moment: DateTimeAsMicroseconds) -> Option<&TradingInstrumentDayOff> {
         let dt: DateTimeStruct = moment.into();
 
         let microseconds_with_in_week_moment =
@@ -20,10 +15,7 @@ pub trait TradingInstrument {
 
         for day_off in self.get_day_offs() {
             if day_off.inside_this_interval(self.get_id(), microseconds_with_in_week_moment) {
-                return Some(DayOffData {
-                    day_off,
-                    microseconds_with_in_week_moment,
-                });
+                return Some(day_off);
             }
         }
 
