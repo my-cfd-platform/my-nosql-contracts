@@ -7,38 +7,14 @@ pub trait TradingInstrument {
 
     fn get_day_offs(&self) -> &[TradingInstrumentDayOff];
 
-    fn is_day_off(&self, now: DateTimeAsMicroseconds) -> Option<&TradingInstrumentDayOff> {
-        let dt: DateTimeStruct = now.into();
+    fn is_day_off(&self, moment: DateTimeAsMicroseconds) -> Option<&TradingInstrumentDayOff> {
+        let dt: DateTimeStruct = moment.into();
 
-        let microseconds_with_in_week_now = dt.time.to_micro_second_withing_week(dt.dow.unwrap());
+        let microseconds_with_in_week_moment =
+            dt.time.to_micro_second_withing_week(dt.dow.unwrap());
 
         for day_off in self.get_day_offs() {
-            let time_from = TimeStruct::parse_from_str(day_off.time_from.as_str());
-            if time_from.is_none() {
-                continue;
-            }
-
-            let dow_from: Weekday = to_week_day(self.get_id(), day_off.dow_from);
-
-            let micro_seconds_from = time_from.unwrap().to_micro_second_withing_week(dow_from);
-
-            let time_to = TimeStruct::parse_from_str(day_off.time_to.as_str());
-            if time_to.is_none() {
-                continue;
-            }
-
-            let dow_to: Weekday = to_week_day(self.get_id(), day_off.dow_to);
-            let micro_seconds_to = time_to.unwrap().to_micro_second_withing_week(dow_to);
-
-            if micro_seconds_from < micro_seconds_to {
-                if micro_seconds_from <= microseconds_with_in_week_now
-                    && microseconds_with_in_week_now <= micro_seconds_to
-                {
-                    return Some(day_off);
-                }
-            } else if micro_seconds_from <= microseconds_with_in_week_now
-                || microseconds_with_in_week_now <= micro_seconds_to
-            {
+            if day_off.inside_this_interval(self.get_id(), microseconds_with_in_week_moment) {
                 return Some(day_off);
             }
         }
@@ -54,6 +30,41 @@ pub struct TradingInstrumentDayOff {
     pub time_from: String,
     pub dow_to: i32,
     pub time_to: String,
+}
+
+impl TradingInstrumentDayOff {
+    pub fn inside_this_interval(&self, id: &str, microseconds_with_in_week_moment: u64) -> bool {
+        let time_from = TimeStruct::parse_from_str(self.time_from.as_str());
+        if time_from.is_none() {
+            return false;
+        }
+
+        let dow_from: Weekday = to_week_day(id, self.dow_from);
+
+        let micro_seconds_from = time_from.unwrap().to_micro_second_withing_week(dow_from);
+
+        let time_to = TimeStruct::parse_from_str(self.time_to.as_str());
+        if time_to.is_none() {
+            return false;
+        }
+
+        let dow_to: Weekday = to_week_day(id, self.dow_to);
+        let micro_seconds_to = time_to.unwrap().to_micro_second_withing_week(dow_to);
+
+        if micro_seconds_from < micro_seconds_to {
+            if micro_seconds_from <= microseconds_with_in_week_moment
+                && microseconds_with_in_week_moment <= micro_seconds_to
+            {
+                return true;
+            }
+        } else if micro_seconds_from <= microseconds_with_in_week_moment
+            || microseconds_with_in_week_moment <= micro_seconds_to
+        {
+            return true;
+        }
+
+        false
+    }
 }
 
 fn to_week_day(id: &str, value: i32) -> Weekday {
