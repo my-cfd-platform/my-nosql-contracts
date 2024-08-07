@@ -33,6 +33,18 @@ pub struct TradingInstrumentDayOff {
 }
 
 impl TradingInstrumentDayOff {
+    pub fn inside_this_interval_from_date_time(
+        &self,
+        id: &str,
+        moment: DateTimeAsMicroseconds,
+    ) -> bool {
+        let dt: DateTimeStruct = moment.into();
+
+        let microseconds_with_in_week_moment =
+            dt.time.to_micro_second_withing_week(dt.dow.unwrap());
+
+        self.inside_this_interval(id, microseconds_with_in_week_moment)
+    }
     pub fn inside_this_interval(&self, id: &str, microseconds_with_in_week_moment: u64) -> bool {
         let time_from = TimeStruct::parse_from_str(self.time_from.as_str());
         if time_from.is_none() {
