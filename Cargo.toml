@@ -1,6 +1,6 @@
 [package]
 name = "my-nosql-contracts"
-version = "0.1.41"
+version = "0.1.45"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
@@ -19,4 +19,4 @@ service-sdk = { tag = "0.2.6", git = "https://github.com/MyJetTools/service-sdk.
 
 serde = { version = "*", features = ["derive"] }
 chrono = { version = "*", features = ["serde"] }
-serde_json ={ version = "*"}
+serde_json = { version = "*" }
