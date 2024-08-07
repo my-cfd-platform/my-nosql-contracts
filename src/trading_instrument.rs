@@ -7,7 +7,7 @@ pub trait TradingInstrument {
 
     fn get_day_offs(&self) -> &[TradingInstrumentDayOff];
 
-    fn is_day_off(&self, now: DateTimeAsMicroseconds) -> bool {
+    fn is_day_off(&self, now: DateTimeAsMicroseconds) -> Option<&TradingInstrumentDayOff> {
         let dt: DateTimeStruct = now.into();
 
         let microseconds_with_in_week_now = dt.time.to_micro_second_withing_week(dt.dow.unwrap());
@@ -34,16 +34,16 @@ pub trait TradingInstrument {
                 if micro_seconds_from <= microseconds_with_in_week_now
                     && microseconds_with_in_week_now <= micro_seconds_to
                 {
-                    return true;
+                    return Some(day_off);
                 }
             } else if micro_seconds_from <= microseconds_with_in_week_now
                 || microseconds_with_in_week_now <= micro_seconds_to
             {
-                return true;
+                return Some(day_off);
             }
         }
 
-        false
+        None
     }
 }
 
@@ -117,19 +117,19 @@ mod tests {
 
         //Monday but before 12:00
         let now = DateTimeAsMicroseconds::from_str("2024-07-15T00:00:00").unwrap();
-        assert!(!instrument.is_day_off(now));
+        assert!(instrument.is_day_off(now).is_none());
 
         //Monday but 12:00
         let now = DateTimeAsMicroseconds::from_str("2024-07-15T12:00:00").unwrap();
-        assert!(instrument.is_day_off(now));
+        assert!(instrument.is_day_off(now).is_some());
 
         //Monday but 12:30
         let now = DateTimeAsMicroseconds::from_str("2024-07-15T12:30:00").unwrap();
-        assert!(instrument.is_day_off(now));
+        assert!(instrument.is_day_off(now).is_some());
 
         //Monday but 12:30:01
         let now = DateTimeAsMicroseconds::from_str("2024-07-15T12:30:01").unwrap();
-        assert!(!instrument.is_day_off(now));
+        assert!(instrument.is_day_off(now).is_none());
     }
 
     #[test]
@@ -146,18 +146,18 @@ mod tests {
 
         //Sunday
         let now = DateTimeAsMicroseconds::from_str("2024-07-14T12:30:00").unwrap();
-        assert!(!instrument.is_day_off(now));
+        assert!(instrument.is_day_off(now).is_none());
         //Sunday
         let now = DateTimeAsMicroseconds::from_str("2024-07-14T23:59:59").unwrap();
-        assert!(instrument.is_day_off(now));
+        assert!(instrument.is_day_off(now).is_some());
 
         //Monday
         let now = DateTimeAsMicroseconds::from_str("2024-07-15T00:00:00").unwrap();
-        assert!(instrument.is_day_off(now));
+        assert!(instrument.is_day_off(now).is_some());
 
         //Monday
         let now = DateTimeAsMicroseconds::from_str("2024-07-15T00:00:01").unwrap();
-        assert!(!instrument.is_day_off(now));
+        assert!(instrument.is_day_off(now).is_none());
     }
 
     #[test]
@@ -174,28 +174,28 @@ mod tests {
 
         //Sunday
         let now = DateTimeAsMicroseconds::from_str("2024-07-14T12:30:00").unwrap();
-        assert!(instrument.is_day_off(now));
+        assert!(instrument.is_day_off(now).is_some());
 
         let now = DateTimeAsMicroseconds::from_str("2024-08-02T20:59:58").unwrap();
-        assert!(!instrument.is_day_off(now));
+        assert!(instrument.is_day_off(now).is_none());
 
         let now = DateTimeAsMicroseconds::from_str("2024-08-02T20:59:59").unwrap();
-        assert!(instrument.is_day_off(now));
+        assert!(instrument.is_day_off(now).is_some());
 
         //Saturday
         let now = DateTimeAsMicroseconds::from_str("2024-08-03T20:00:00").unwrap();
-        assert!(instrument.is_day_off(now));
+        assert!(instrument.is_day_off(now).is_some());
 
         //Sunday
         let now = DateTimeAsMicroseconds::from_str("2024-08-04T20:59:59").unwrap();
-        assert!(instrument.is_day_off(now));
+        assert!(instrument.is_day_off(now).is_some());
 
         //Sunday
         let now = DateTimeAsMicroseconds::from_str("2024-08-04T21:00:00").unwrap();
-        assert!(instrument.is_day_off(now));
+        assert!(instrument.is_day_off(now).is_some());
 
         let now = DateTimeAsMicroseconds::from_str("2024-08-01T21:00:01").unwrap();
-        assert!(!instrument.is_day_off(now));
+        assert!(instrument.is_day_off(now).is_none());
     }
 
     #[test]
@@ -238,10 +238,10 @@ mod tests {
 
         // Wednesday
         let now = DateTimeAsMicroseconds::from_str("2024-07-31T10:12:01").unwrap();
-        assert!(!instrument.is_day_off(now));
+        assert!(instrument.is_day_off(now).is_none());
 
         // Sunday
         let now = DateTimeAsMicroseconds::from_str("2024-08-04T10:12:01").unwrap();
-        assert!(instrument.is_day_off(now));
+        assert!(instrument.is_day_off(now).is_some());
     }
 }
