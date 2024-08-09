@@ -7,12 +7,12 @@ service_sdk::macros::use_my_no_sql_entity!();
 // cSpell:enable
 #[derive(Serialize, Deserialize, Debug, Clone)]
 #[serde(rename_all = "PascalCase")]
-pub struct CandleMinMaxKey {
+pub struct CandleMinMaxKeyNoSqlEntity {
     pub min_key: i64,
     pub max_key: i64,
 }
 
-impl CandleMinMaxKey {
+impl CandleMinMaxKeyNoSqlEntity {
     pub fn generate_partition_key(instrument_id: &str) -> &str {
         &instrument_id
     }
