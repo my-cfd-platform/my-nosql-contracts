@@ -1,4 +1,5 @@
 use serde::{Deserialize, Serialize};
+use service_sdk::rust_extensions::StrOrString;
 
 service_sdk::macros::use_my_no_sql_entity!();
 
@@ -13,8 +14,10 @@ pub struct CandleMinMaxKeyNoSqlEntity {
 }
 
 impl CandleMinMaxKeyNoSqlEntity {
-    pub fn generate_partition_key(instrument_id: &str) -> &str {
-        &instrument_id
+    pub fn generate_partition_key<'s>(
+        instrument_id: impl Into<StrOrString<'s>>,
+    ) -> StrOrString<'s> {
+        instrument_id.into()
     }
     pub fn generate_row_key(candle_type_as_u8: u8, is_bid: bool) -> String {
         if is_bid {
