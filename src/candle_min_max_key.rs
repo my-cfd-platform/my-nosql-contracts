@@ -16,7 +16,11 @@ impl CandleMinMaxKeyNoSqlEntity {
     pub fn generate_partition_key(instrument_id: &str) -> &str {
         &instrument_id
     }
-    pub fn generate_row_key(candle_type_as_u8: u8) -> String {
-        candle_type_as_u8.to_string()
+    pub fn generate_row_key(candle_type_as_u8: u8, is_bid: bool) -> String {
+        if is_bid {
+            return format!("bid-{}", candle_type_as_u8);
+        }
+
+        format!("ask-{}", candle_type_as_u8)
     }
 }
