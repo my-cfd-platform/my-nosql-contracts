@@ -9,6 +9,7 @@ mod instrument_group;
 mod instrument_mapping_entity;
 mod instrument_sources_entity;
 mod integration_settings_entity;
+mod price_feed;
 #[cfg(feature = "isolated-margin")]
 mod isolated_margin;
 mod key_value_cache;
@@ -47,3 +48,4 @@ mod trading_instrument;
 pub use trading_instrument::*;
 mod candle_min_max_key;
 pub use candle_min_max_key::*;
+pub use price_feed::*;
