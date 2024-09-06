@@ -33,4 +33,6 @@ impl MarkupProfileNoSqlEntity {
 pub struct MarkupInstrumentEntity {
     pub markup_bid: i32,
     pub markup_ask: i32,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub max_spread: Option<i32>,
 }
