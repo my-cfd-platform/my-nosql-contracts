@@ -35,4 +35,6 @@ pub struct MarkupInstrumentEntity {
     pub markup_ask: i32,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub max_spread: Option<i32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub min_spread: Option<i32>,
 }
