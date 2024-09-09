@@ -29,7 +29,6 @@ pub struct TradingProfileInstrument {
     pub stop_out_percent: Option<f64>,
     pub instrument_max_leverage: Option<f64>,
     pub commission_per_lot: Option<f64>,
-    pub zero_spread: bool,
 }
 
 impl TradingProfileNoSqlEntity {
