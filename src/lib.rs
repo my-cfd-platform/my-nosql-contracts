@@ -49,3 +49,6 @@ pub use trading_instrument::*;
 mod candle_min_max_key;
 pub use candle_min_max_key::*;
 pub use price_feed::*;
+
+pub mod integration;
+pub use integration::*;
