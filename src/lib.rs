@@ -17,6 +17,8 @@ mod kyc_profile_entity;
 mod markup_profile_entity;
 mod price_change_model;
 mod product_settings;
+mod slippage_ladder;
+mod mde_profile;
 mod swap_profile_model;
 mod swap_schedule_model;
 
@@ -24,9 +26,11 @@ pub use bid_ask_snapshot_model::*;
 #[cfg(feature = "cross-margin")]
 pub use cross_margin::*;
 pub use default_favorite_instruments::*;
+pub use mde_profile::*;
 pub use default_value::*;
 pub use fav_instruments_cache::*;
 pub use instrument_avatar::*;
+pub use slippage_ladder::*;
 pub use instrument_group::*;
 pub use instrument_mapping_entity::*;
 pub use instrument_sources_entity::*;

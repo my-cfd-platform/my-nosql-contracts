@@ -10,6 +10,8 @@ pub struct TradingGroupNoSqlEntity {
     pub markup_profile_id: Option<String>,
     pub swap_profile_id: String,
     pub trading_disabled: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub mde_profile: Option<bool>,
 }
 
 impl TradingGroupNoSqlEntity {
