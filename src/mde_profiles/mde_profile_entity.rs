@@ -1,23 +1,23 @@
 service_sdk::macros::use_my_no_sql_entity!();
 use serde::{Deserialize, Serialize};
 
-#[my_no_sql_entity("slippage_lader")]
+#[my_no_sql_entity("mde-profiles")]
 #[derive(Serialize, Deserialize, Debug, Clone)]
 #[serde(rename_all = "PascalCase")]
-pub struct MdeProfile {
+pub struct MdeProfileNoSqlEntity {
     pub id: String,
-    pub instruments: Vec<MdeProfileInstrumentMyNoSqlModel>,
+    pub instruments: Vec<InstrumentLadderModel>,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
-pub struct MdeProfileInstrumentMyNoSqlModel {
+pub struct InstrumentLadderModel {
     pub id: String,
-    pub slippage_ladder: Option<String>,
+    pub ladder_id: Option<String>,
 }
 
-impl MdeProfile {
+impl MdeProfileNoSqlEntity {
     pub fn generate_partition_key() -> &'static str {
-        "mdep"
+        "profile"
     }
 
     pub fn generate_row_key(id: &str) -> String {

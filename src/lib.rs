@@ -26,7 +26,7 @@ pub use bid_ask_snapshot_model::*;
 #[cfg(feature = "cross-margin")]
 pub use cross_margin::*;
 pub use default_favorite_instruments::*;
-pub use mde_profile::*;
+pub use mde_profile_entity::*;
 pub use default_value::*;
 pub use fav_instruments_cache::*;
 pub use instrument_avatar::*;
@@ -55,4 +55,8 @@ pub use candle_min_max_key::*;
 pub use price_feed::*;
 
 pub mod integration;
+
 pub use integration::*;
+
+mod mde_profiles;
+pub use mde_profiles::*;
