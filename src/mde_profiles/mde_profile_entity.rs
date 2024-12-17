@@ -10,6 +10,7 @@ pub struct MdeProfileNoSqlEntity {
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
+#[serde(rename_all = "PascalCase")]
 pub struct InstrumentLadderModel {
     pub id: String,
     pub ladder_id: Option<String>,

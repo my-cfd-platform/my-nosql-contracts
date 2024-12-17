@@ -10,20 +10,11 @@ pub struct MdeLaddersMyNoSqlEntity {
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
+#[serde(rename_all = "PascalCase")]
 pub struct MdeLadderModel{
     pub level: f64,
     pub volume_deviation: f64,
     pub markup: f64,
     pub markup_deviation: f64,
 
-}
-
-impl MdeLaddersMyNoSqlEntity {
-    pub fn generate_partition_key() -> &'static str {
-        "ladder"
-    }
-
-    pub fn generate_row_key(id: &str) -> String {
-        id.to_string()
-    }
 }
