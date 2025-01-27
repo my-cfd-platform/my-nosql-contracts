@@ -4,19 +4,20 @@ use serde::{Deserialize, Serialize};
 #[my_no_sql_entity("mde-profiles")]
 #[derive(Serialize, Deserialize, Debug, Clone)]
 #[serde(rename_all = "PascalCase")]
-pub struct MdeProfileNoSqlEntity {
+pub struct MdeProfileMyNoSqlEntity {
     pub id: String,
-    pub instruments: Vec<InstrumentLadderModel>,
+    pub name: String,
+    pub instruments: Vec<InstrumentMdeLiquidityProfile>,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 #[serde(rename_all = "PascalCase")]
-pub struct InstrumentLadderModel {
+pub struct InstrumentMdeLiquidityProfile {
     pub id: String,
-    pub ladder_id: Option<String>,
+    pub profile_id: Option<String>,
 }
 
-impl MdeProfileNoSqlEntity {
+impl MdeProfileMyNoSqlEntity {
     pub fn generate_partition_key() -> &'static str {
         "profile"
     }
